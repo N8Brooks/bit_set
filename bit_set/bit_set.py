@@ -55,6 +55,9 @@ class BitSet:
     def __ge__(self, other: BitSet) -> bool:
         return self.bits & other._bits == other._bits
 
+    def __hash__(self) -> int:
+        return hash(self._bits)
+
     def union(self, other: BitSet) -> BitSet:
         return self | other
 

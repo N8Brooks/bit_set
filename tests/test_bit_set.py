@@ -86,6 +86,12 @@ def test_issuperset():
         assert a.issuperset(b) == set(a).issuperset(set(b))
 
 
+def test_hash():
+    bits = 123
+    bit_set = BitSet(bits)
+    assert hash(bit_set) == hash(bits)
+
+
 def test_union():
     for a, b in product(map(BitSet, range(4)), repeat=2):
         expected = BitSet.from_iter(set(a).union(set(b))).bits
