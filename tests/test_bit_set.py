@@ -53,3 +53,15 @@ def test_contains():
         assert i in bit_set
     for i in set(range(10)) - bits:
         assert i not in bit_set
+
+
+def test_isdisjoint_true():
+    a = BitSet(0b1010)
+    b = BitSet(0b0101)
+    assert a.isdisjoint(b) and b.isdisjoint(a)
+
+
+def test_isdisjoint_false():
+    a = BitSet(0b1010)
+    b = BitSet(0b1000)
+    assert not a.isdisjoint(b) and not b.isdisjoint(a)
