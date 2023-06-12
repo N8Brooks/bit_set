@@ -11,6 +11,7 @@ class BitSet:
     """Represents a collection of bits with **non-negative** indexes."""
 
     def __init__(self, bits: int):
+        assert bits >= 0, "The `bits` argument must be non-negative."
         self._bits = bits
 
     @staticmethod
@@ -18,6 +19,7 @@ class BitSet:
         """Returns a new `BitSet` whose bit indexes are taken from *iterable*."""
         bits = 0
         for i in iterable:
+            assert i >= 0, "Indexes must be non-negative."
             bits |= 1 << i
         return BitSet(bits)
 

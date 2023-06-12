@@ -1,9 +1,16 @@
 """Testing for `BitSet` implementation"""
 from itertools import product
 
+import pytest
+
 from bit_set.bit_set import BitSet
 
 # pylint: disable=invalid-name,missing-function-docstring
+
+
+def test_init_negative():
+    with pytest.raises(Exception, match="must be non-negative"):
+        BitSet(-1)
 
 
 def test_from_bits():
@@ -12,11 +19,21 @@ def test_from_bits():
     assert bit_set.bits == 0b1010
 
 
+def test_from_bits_negative():
+    with pytest.raises(Exception, match="must be non-negative"):
+        BitSet.from_iter([-1])
+
+
 def test_from_index():
     index = 3
     expected = 0b1000
     bit_set = BitSet.from_index(index)
     assert bit_set.bits == expected
+
+
+def test_from_index_negative():
+    with pytest.raises(Exception, match="negative shift count"):
+        BitSet.from_index(-1)
 
 
 def test_copy():
