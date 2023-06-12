@@ -25,11 +25,11 @@ class BitSet:
 
     def __iter__(self) -> Iterable[int]:
         n = self._bits.bit_length()
-        return (i for i in range(n) if (1 << i) & self._bits > 0)
+        return (i for i in range(n) if (1 << i) & self._bits)
 
     def __reversed__(self) -> Iterable[int]:
         n = self._bits.bit_length()
-        return (i for i in reversed(range(n)) if (1 << i) & self._bits > 0)
+        return (i for i in reversed(range(n)) if (1 << i) & self._bits)
 
     def __len__(self) -> int:
         return self._bits.bit_count()
@@ -44,7 +44,7 @@ class BitSet:
         return self <= other
 
     def __le__(self, other: BitSet) -> bool:
-        raise NotImplementedError
+        return self._bits & other._bits == self._bits
 
     def __lt__(self, other: BitSet) -> bool:
         raise NotImplementedError
