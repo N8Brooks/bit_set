@@ -21,6 +21,11 @@ class BitSet:
             bits |= 1 << i
         return BitSet(bits)
 
+    @staticmethod
+    def from_index(i: int) -> BitSet:
+        """Returns a `BitSet` with the given index, *i*, set to 1."""
+        return BitSet(1 << i)
+
     def copy(self) -> BitSet:
         """Returns a copy of the `BitSet`."""
         return BitSet(self._bits)

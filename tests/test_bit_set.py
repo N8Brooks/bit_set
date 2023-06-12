@@ -12,6 +12,13 @@ def test_from_bits():
     assert bit_set.bits == 0b1010
 
 
+def test_from_index():
+    index = 3
+    expected = 0b1000
+    bit_set = BitSet.from_index(index)
+    assert bit_set.bits == expected
+
+
 def test_copy():
     bits = 0b1010
     bit_set = BitSet(bits).copy()
