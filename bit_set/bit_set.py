@@ -53,7 +53,7 @@ class BitSet:
         return self >= other
 
     def __ge__(self, other: BitSet) -> bool:
-        raise NotImplementedError
+        return self.bits & other._bits == other._bits
 
     def union(self, other: BitSet) -> BitSet:
         return self | other

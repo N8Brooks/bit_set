@@ -79,3 +79,8 @@ def test_issubset():
 def test_lt():
     for a, b in product(map(BitSet, range(4)), repeat=2):
         assert (a < b) == (set(a) < set(b))
+
+
+def test_issuperset():
+    for a, b in product(map(BitSet, range(4)), repeat=2):
+        assert a.issuperset(b) == set(a).issuperset(set(b))
