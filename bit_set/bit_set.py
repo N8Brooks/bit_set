@@ -100,12 +100,15 @@ class BitSet:
         """Return a new set with bits from this `BitSet` and *other*."""
         return BitSet(self._bits | other._bits)
 
-    def intersection(self, other) -> BitSet:
-        """Return bits common to this `BitSet` and *other*."""
-        return self & other
+    def intersection(self, *others: BitSet) -> BitSet:
+        """Return bits common to this `BitSet` and *others*."""
+        bits = self._bits
+        for other in others:
+            bits &= other._bits
+        return BitSet(bits)
 
     def __and__(self, other: BitSet) -> BitSet:
-        """Return a `BitSet` of bits common to this `BitSet` and *other*."""
+        """Return bits common to this `BitSet` and *other*."""
         return BitSet(self._bits & other._bits)
 
     def difference(self, other: BitSet) -> BitSet:

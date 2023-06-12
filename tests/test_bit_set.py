@@ -124,9 +124,9 @@ def test_union_two():
 
 def test_union_multiple():
     bits = 0b1010
-    bit_set = BitSet(0b1010)
+    bit_set = BitSet(bits)
     for r in range(4):
-        others = [BitSet(0b1010)] * r
+        others = [BitSet(bits)] * r
         assert bit_set.union(*others).bits == bits
 
 
@@ -136,9 +136,31 @@ def test_or():
         assert (a | b).bits == expected
 
 
-def test_intersection():
+def test_intersection_one():
+    bits = 0b1010
+    bit_set = BitSet(bits)
+    assert bit_set.intersection().bits == bits
+
+
+def test_intersection_two():
     for a, b in product(map(BitSet, range(4)), repeat=2):
         expected = BitSet.from_iter(set(a).intersection(set(b))).bits
+        assert a.intersection(b).bits == expected
+
+
+def test_intersection_multiple():
+    bits_1 = 0b1010
+    bits_2 = 0b0111
+    expected = bits_1 & bits_2
+    bit_set = BitSet(bits_1)
+    for r in range(1, 4):
+        others = [BitSet(bits_2)] * r
+        assert bit_set.intersection(*others).bits == expected
+
+
+def test_and():
+    for a, b in product(map(BitSet, range(4)), repeat=2):
+        expected = BitSet.from_iter(set(a) & set(b)).bits
         assert a.intersection(b).bits == expected
 
 
