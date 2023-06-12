@@ -107,6 +107,12 @@ def test_hash():
     assert hash(bit_set) == hash(bits)
 
 
+def test_str():
+    bits = 123
+    bit_set = BitSet(bits)
+    assert str(bit_set) == bin(bits)
+
+
 def test_union():
     for a, b in product(map(BitSet, range(4)), repeat=2):
         expected = BitSet.from_iter(set(a).union(set(b))).bits

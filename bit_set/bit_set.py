@@ -67,6 +67,9 @@ class BitSet:
     def __hash__(self) -> int:
         return hash(self._bits)
 
+    def __str__(self) -> str:
+        return bin(self._bits)
+
     def union(self, other: BitSet) -> BitSet:
         return self | other
 
