@@ -1,6 +1,7 @@
 """Test"""
-from bit_set.bit_set import BitSet
 from itertools import product
+
+from bit_set.bit_set import BitSet
 
 
 def test_init():
@@ -73,3 +74,8 @@ def test_not_isdisjoint():
 def test_issubset():
     for a, b in product(map(BitSet, range(4)), repeat=2):
         assert a.issubset(b) == set(a).issubset(set(b))
+
+
+def test_lt():
+    for a, b in product(map(BitSet, range(4)), repeat=2):
+        assert (a < b) == (set(a) < set(b))

@@ -47,7 +47,7 @@ class BitSet:
         return self._bits & other._bits == self._bits
 
     def __lt__(self, other: BitSet) -> bool:
-        raise NotImplementedError
+        return self._bits != other._bits and self._bits & other._bits == self._bits
 
     def issuperset(self, other: BitSet) -> bool:
         return self >= other
