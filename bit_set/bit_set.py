@@ -40,6 +40,9 @@ class BitSet:
     def __eq__(self, other: BitSet) -> bool:
         return self._bits == other._bits
 
+    def __ne__(self, other: BitSet) -> bool:
+        return self._bits != other._bits
+
     def isdisjoint(self, other: BitSet) -> bool:
         return self._bits & other._bits == 0
 
