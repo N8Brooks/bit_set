@@ -23,9 +23,9 @@ class BitSet:
         return BitSet(bits)
 
     @staticmethod
-    def from_index(i: int) -> BitSet:
-        """Returns a `BitSet` with index *i* set to 1."""
-        return BitSet(1 << i)
+    def from_index(*indexes: int) -> BitSet:
+        """Returns a `BitSet` with each index set to 1."""
+        return BitSet.from_iter(indexes)
 
     def copy(self) -> BitSet:
         """Returns a copy of this `BitSet`."""
