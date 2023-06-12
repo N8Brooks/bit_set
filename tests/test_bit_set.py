@@ -57,6 +57,11 @@ def test_contains():
         assert i not in bit_set
 
 
+def test_eq():
+    for a, b in product(map(BitSet, range(4)), repeat=2):
+        assert (a == b) == (set(a) == set(b))
+
+
 def test_isdisjoint():
     a = BitSet(0b1010)
     b = BitSet(0b0101)
