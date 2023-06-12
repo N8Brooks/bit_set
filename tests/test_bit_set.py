@@ -5,13 +5,25 @@ from bit_set.bit_set import BitSet
 def test_init():
     bits = 0b1010
     bit_set = BitSet(bits)
-    assert bit_set.bits == bits
+    assert bit_set._bits == bits
 
 
 def test_from_bits():
     iterable = [1, 3]
     bit_set = BitSet.from_bits(iterable)
-    assert bit_set.bits == 0b1010
+    assert bit_set._bits == 0b1010
+
+
+def test_copy():
+    bits = 0b1010
+    bit_set = BitSet(bits).copy()
+    assert bit_set.bits == bits
+
+
+def test_bits():
+    bits = 0b1010
+    bit_set = BitSet(bits)
+    assert bit_set.bits == bit_set._bits == bits
 
 
 def test_iter():
