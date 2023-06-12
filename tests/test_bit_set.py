@@ -164,9 +164,31 @@ def test_and():
         assert a.intersection(b).bits == expected
 
 
-def test_difference():
+def test_difference_one():
+    bits = 0b1111
+    bit_set = BitSet(bits)
+    assert bit_set.difference().bits == bits
+
+
+def test_difference_two():
     for a, b in product(map(BitSet, range(4)), repeat=2):
         expected = BitSet.from_iter(set(a).difference(set(b))).bits
+        assert a.difference(b).bits == expected
+
+
+def test_difference_multiple():
+    bits_1 = 0b1010
+    bits_2 = 0b0111
+    expected = 0b1000
+    bit_set = BitSet(bits_1)
+    for r in range(1, 4):
+        others = [BitSet(bits_2)] * r
+        assert bit_set.difference(*others).bits == expected
+
+
+def test_sub():
+    for a, b in product(map(BitSet, range(4)), repeat=2):
+        expected = BitSet.from_iter(set(a) - set(b)).bits
         assert a.difference(b).bits == expected
 
 

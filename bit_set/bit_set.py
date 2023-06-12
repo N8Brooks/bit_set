@@ -111,12 +111,15 @@ class BitSet:
         """Return bits common to this `BitSet` and *other*."""
         return BitSet(self._bits & other._bits)
 
-    def difference(self, other: BitSet) -> BitSet:
-        """Return a `BitSet` with bits in this `BitSet` that are not in *other*."""
-        return self - other
+    def difference(self, *others: BitSet) -> BitSet:
+        """Return a `BitSet` with bits from this `BitSet` that are not in *others*."""
+        bits = self._bits
+        for other in others:
+            bits -= bits & other._bits
+        return BitSet(bits)
 
     def __sub__(self, other: BitSet) -> BitSet:
-        """Return a `BitSet` with bits in this `BitSet` that are not in *other*."""
+        """Return a `BitSet` with bits from this `BitSet` that are not in *other*."""
         return BitSet(self._bits - (self._bits & other._bits))
 
     def symmetric_difference(self, other: BitSet) -> BitSet:
