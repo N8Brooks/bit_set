@@ -19,7 +19,6 @@ class BitSet:
         """Returns a new `BitSet` whose bit indexes are taken from *iterable*."""
         bits = 0
         for i in iterable:
-            assert i >= 0, "Indexes must be non-negative."
             bits |= 1 << i
         return BitSet(bits)
 

@@ -20,7 +20,7 @@ def test_from_bits():
 
 
 def test_from_bits_negative():
-    with pytest.raises(Exception, match="must be non-negative"):
+    with pytest.raises(Exception, match="negative shift count"):
         BitSet.from_iter([-1])
 
 
