@@ -53,7 +53,10 @@ class BitSet:
         return self >= other
 
     def __ge__(self, other: BitSet) -> bool:
-        return self.bits & other._bits == other._bits
+        return self._bits & other._bits == other._bits
+
+    def __gt__(self, other: BitSet) -> bool:
+        return self._bits != other._bits and self._bits & other._bits == other._bits
 
     def __hash__(self) -> int:
         return hash(self._bits)

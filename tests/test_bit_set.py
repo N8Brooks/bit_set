@@ -86,6 +86,11 @@ def test_issuperset():
         assert a.issuperset(b) == set(a).issuperset(set(b))
 
 
+def test_gt():
+    for a, b in product(map(BitSet, range(4)), repeat=2):
+        assert (a > b) == (set(a) > set(b))
+
+
 def test_hash():
     bits = 123
     bit_set = BitSet(bits)
