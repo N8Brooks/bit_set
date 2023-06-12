@@ -35,7 +35,7 @@ class BitSet:
         return self._bits.bit_count()
 
     def __contains__(self, i) -> bool:
-        return bool((1 << i) & self._bits)
+        return (1 << i) & self._bits > 0
 
     def isdisjoint(self, other: BitSet) -> bool:
         return self._bits & other._bits == 0
