@@ -48,14 +48,6 @@ class BitSet:
         """Test *i* for membership in the `BitSet`."""
         return (1 << i) & self._bits != 0
 
-    def __eq__(self, other: BitSet) -> bool:
-        """Test whether the `BitSet` matches element-for-element with *other*."""
-        return self._bits == other._bits
-
-    def __ne__(self, other: BitSet) -> bool:
-        """Test whether some elements between `BitSet`s are different."""
-        return self._bits != other._bits
-
     def isdisjoint(self, other: BitSet) -> bool:
         """Returns `True` if the `BitSet` has no elements in common with *other*."""
         return self._bits & other._bits == 0
