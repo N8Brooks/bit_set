@@ -102,3 +102,9 @@ def test_difference():
     for a, b in product(map(BitSet, range(4)), repeat=2):
         expected = BitSet.from_iter(set(a).difference(set(b))).bits
         assert a.difference(b).bits == expected
+
+
+def test_symmetric_difference():
+    for a, b in product(map(BitSet, range(4)), repeat=2):
+        expected = BitSet.from_iter(set(a).symmetric_difference(set(b))).bits
+        assert a.symmetric_difference(b).bits == expected
