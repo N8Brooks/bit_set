@@ -1,4 +1,4 @@
-"""Test"""
+"""Testing for `BitSet` implementation"""
 from itertools import product
 
 from bit_set.bit_set import BitSet
