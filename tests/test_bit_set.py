@@ -109,10 +109,24 @@ def test_str():
     assert str(bit_set) == bin(bits)
 
 
-def test_union():
+def test_union_two():
     for a, b in product(map(BitSet, range(4)), repeat=2):
         expected = BitSet.from_iter(set(a).union(set(b))).bits
         assert a.union(b).bits == expected
+
+
+def test_union_multiple():
+    bits = 0b1010
+    bit_set = BitSet(0b1010)
+    for r in range(4):
+        others = [BitSet(0b1010)] * r
+        assert bit_set.union(*others).bits == bits
+
+
+def test_or():
+    for a, b in product(map(BitSet, range(4)), repeat=2):
+        expected = BitSet.from_iter(set(a) | set(b)).bits
+        assert (a | b).bits == expected
 
 
 def test_intersection():

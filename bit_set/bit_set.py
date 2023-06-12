@@ -84,9 +84,12 @@ class BitSet:
         """Converts the integer of the `BitSet` into its binary representation."""
         return bin(self._bits)
 
-    def union(self, other: BitSet) -> BitSet:
+    def union(self, *others: BitSet) -> BitSet:
         """Return a new set with elements from the set and *other*."""
-        return self | other
+        bits = self._bits
+        for other in others:
+            bits |= other._bits
+        return BitSet(bits)
 
     def __or__(self, other: BitSet) -> BitSet:
         """Return a new set with elements from the set and *other*."""
