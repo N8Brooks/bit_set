@@ -62,7 +62,7 @@ def test_eq():
         assert (a == b) == (set(a) == set(b))
 
 
-def test_eq():
+def test_ne():
     for a, b in product(map(BitSet, range(4)), repeat=2):
         assert (a != b) == (set(a) != set(b))
 
