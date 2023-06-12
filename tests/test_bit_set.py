@@ -10,7 +10,7 @@ def test_init():
 
 def test_from_bits():
     iterable = [1, 3]
-    bit_set = BitSet.from_bits(iterable)
+    bit_set = BitSet.from_iter(iterable)
     assert bit_set._bits == 0b1010
 
 
@@ -28,14 +28,14 @@ def test_bits():
 
 def test_iter():
     expected = [1, 3]
-    bit_set = BitSet.from_bits(expected)
+    bit_set = BitSet.from_iter(expected)
     actual = list(bit_set)
     assert actual == expected
 
 
 def test_reversed():
     expected = [3, 1]
-    bit_set = BitSet.from_bits(expected)
+    bit_set = BitSet.from_iter(expected)
     actual = list(reversed(bit_set))
     assert actual == expected
 
@@ -48,7 +48,7 @@ def test_len():
 
 def test_contains():
     bits = {1, 3}
-    bit_set = BitSet.from_bits(bits)
+    bit_set = BitSet.from_iter(bits)
     for i in bits:
         assert i in bit_set
     for i in set(range(10)) - bits:

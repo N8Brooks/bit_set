@@ -10,7 +10,7 @@ class BitSet:
         self._bits = bits
 
     @staticmethod
-    def from_bits(iterable: Iterable[int]) -> BitSet:
+    def from_iter(iterable: Iterable[int]) -> BitSet:
         bits = 0
         for i in iterable:
             bits |= 1 << i
