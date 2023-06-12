@@ -84,3 +84,9 @@ def test_lt():
 def test_issuperset():
     for a, b in product(map(BitSet, range(4)), repeat=2):
         assert a.issuperset(b) == set(a).issuperset(set(b))
+
+
+def test_union():
+    for a, b in product(map(BitSet, range(4)), repeat=2):
+        expected = BitSet.from_iter(set(a).union(set(b))).bits
+        assert a.union(b).bits == expected
