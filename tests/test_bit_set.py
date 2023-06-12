@@ -90,3 +90,9 @@ def test_union():
     for a, b in product(map(BitSet, range(4)), repeat=2):
         expected = BitSet.from_iter(set(a).union(set(b))).bits
         assert a.union(b).bits == expected
+
+
+def test_intersection():
+    for a, b in product(map(BitSet, range(4)), repeat=2):
+        expected = BitSet.from_iter(set(a).intersection(set(b))).bits
+        assert a.intersection(b).bits == expected
