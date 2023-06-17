@@ -1,0 +1,31 @@
+name: bit_sets
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.8", "3.9", "3.10"]
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install pipenv
+      run: |
+        python -m pip install --upgrade pipenv wheel
+    - run: pipenv run isort . --profile black --check
+    - run: pipenv run black . --check
+    - run: pipenv run pylint **/*.py
+    - run: pipenv run mypy .
+    - run: pipenv run pytest **/*.py --verbose
